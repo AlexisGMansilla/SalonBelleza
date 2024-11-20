@@ -89,14 +89,13 @@ WSGI_APPLICATION = 'Estetica.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQLDATABASE', 'EstrellaEstilistas'),  # Variable de Railway o valor local
-        'USER': os.getenv('MYSQLUSER', 'root'),                   # Usuario de Railway o valor local
-        'PASSWORD': os.getenv('MYSQLPASSWORD', '1234'),           # Contraseña de Railway o valor local
-        'HOST': os.getenv('MYSQLHOST', '127.0.0.1'),              # Host de Railway o localhost
-        'PORT': os.getenv('MYSQLPORT', '3306'),                   # Puerto de Railway o valor local
+        'NAME': 'railway',              # Copia el valor de MYSQLDATABASE
+        'USER': 'root',              # Copia el valor de MYSQLUSER
+        'PASSWORD': 'ANfuzqxfcyVxHVQmDxLPXCQRthatsMFK',     # Copia el valor de MYSQLPASSWORD
+        'HOST': 'mysql.railway.internal',  # Copia el valor de MYSQLHOST
+        'PORT': '3306',                       # Copia el valor de MYSQLPORT
     }
 }
-
 
 
 # Password validation
