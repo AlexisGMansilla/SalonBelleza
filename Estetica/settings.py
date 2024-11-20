@@ -12,11 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
-import pymysql
-
-# Configura pymysql como reemplazo de MySQLdb
-pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -87,9 +82,14 @@ WSGI_APPLICATION = 'Estetica.wsgi.application'
 
 # Database configuration using MYSQL_PUBLIC_URL
 DATABASES = {
-    'default': dj_database_url.config(
-        default='mysql://root:ANfuzqxfcyVxHVQmDxLPXCQRthatsMFK@mysql.railway.internal:3306/railway'
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'ANfuzqxfcyVxHVQmDxLPXCQRthatsMFK',
+        'HOST': 'mysql.railway.internal',
+        'PORT': '3306',
+    }
 }
 
 
