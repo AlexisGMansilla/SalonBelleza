@@ -83,17 +83,17 @@ WSGI_APPLICATION = 'Estetica.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'EstrellaEstilistas',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': '127.0.0.1',
-        'PORT': '3306', 
+        'ENGINE': 'django.db.backends.mysql',  # Motor de base de datos
+        'NAME': os.getenv('DB_NAME'),         # Nombre de la base de datos
+        'USER': os.getenv('DB_USER'),         # Usuario
+        'PASSWORD': os.getenv('DB_PASSWORD'), # Contraseña
+        'HOST': os.getenv('DB_HOST'),         # Host (dirección del servidor)
+        'PORT': os.getenv('DB_PORT'),         # Puerto
     }
 }
+
 
 
 # Password validation
