@@ -12,13 +12,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 import pymysql
-pymysql.install_as_MySQLdb()
 
+# Configura pymysql como reemplazo de MySQLdb
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -27,12 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dv^ij7u)t13er44*ju=vl!e56p2z%p^rr9kizb_a6yq2d^-f7e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False  # Cambia a False para producción
 
 ALLOWED_HOSTS = ['salonbelleza-production.up.railway.app', 'localhost']
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Aplicaciones del proyecto
     'Turnos',
     'Login',
     'Cajas',
@@ -74,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Context processors personalizados
                 'Turnos.context_processors.trabajador_context',
                 'Clientes.context_processors.client_count',
             ],
@@ -83,66 +85,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Estetica.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+# Database configuration using MYSQL_PUBLIC_URL
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',              # Copia el valor de MYSQLDATABASE
-        'USER': 'root',              # Copia el valor de MYSQLUSER
-        'PASSWORD': 'ANfuzqxfcyVxHVQmDxLPXCQRthatsMFK',     # Copia el valor de MYSQLPASSWORD
-        'HOST': 'mysql.railway.internal',  # Copia el valor de MYSQLHOST
-        'PORT': '3306',                       # Copia el valor de MYSQLPORT
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('MYSQL_PUBLIC_URL')  # URL completa de conexión a MySQL
+    )
 }
 
-
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
-
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
-LANGUAGE_CODE = 'es-es'  
-TIME_ZONE = 'America/Argentina/Buenos_Aires' 
-USE_I18N = True 
-USE_L10N = True 
-USE_TZ = True 
-
+LANGUAGE_CODE = 'es-es'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-# URL base para los archivos estáticos
 STATIC_URL = '/static/'
-
-# Directorio donde estarán tus archivos estáticos
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-# Directorio donde Django recopilará todos los archivos estáticos (en producción)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
