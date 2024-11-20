@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'Turnos'  # Define el namespace para Turnos
+app_name = 'Turnos'
 
 urlpatterns = [
     path('Home/', views.home_view, name='home_view'),
