@@ -1,1 +1,1 @@
-web: gunicorn Estetica.wsgi --log-file -
+web: python manage.py migrate && gunicorn school.wsgi
