@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-dv^ij7u)t13er44*ju=vl!e56p2z%p^rr9kizb_a6yq2d^-f7e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['salonbelleza-production.up.railway.app', 'localhost']
 
 # Application definition
 
