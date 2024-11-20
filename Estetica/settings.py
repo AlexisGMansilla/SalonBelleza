@@ -88,9 +88,10 @@ WSGI_APPLICATION = 'Estetica.wsgi.application'
 # Database configuration using MYSQL_PUBLIC_URL
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('MYSQL_PUBLIC_URL')  # URL completa de conexión a MySQL
+        default='mysql://root:ANfuzqxfcyVxHVQmDxLPXCQRthatsMFK@mysql.railway.internal:3306/railway'
     )
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
