@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
+:root {
+    --stroke: rgba(217, 218, 228, 1); /* Borde de inputs */
+    --input: rgba(162, 163, 169, 1);
+    --background: rgba(243, 248, 255, 1);
+    --white: rgba(255, 255, 255, 1);
+    --black: rgba(0, 0, 0, 1);
+    --red-0: rgba(17, 3, 5, 1);
+    --red-10: rgba(52, 9, 14, 1);
+    --red-20: rgba(87, 15, 24, 1);
+    --red-30: rgba(121, 21, 33, 1);
+    --red-40: rgba(161, 34, 52, 1); /* Color principal */
+    --red-50: rgba(218, 41, 63, 1);
+    --red-60: rgba(224, 82, 109, 1); /* Degradé del menú */
+    --red-70: rgba(231, 134, 164, 1); /* Degradé del menú */
+    --red-80: rgba(233, 186, 192, 1);
+    --red-90: rgba(243, 200, 223, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inconsolata", monospace;
+}
+
+body {
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #888;
+    margin-bottom: 20px;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+img {
+    max-width: 350px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.login-container {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 450px;
+    width: 100%;
+}
+
+.login-container h1 {
+    color: var(--red-40);
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.login-container p {
+    font-size: 16px;
+    color: var(--input);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--stroke);
+    border-radius: 5px;
+    background-color: var(--white);
+    padding: 5px;
+    position: relative;
+}
+
+.input-icon {
+    font-size: 20px;
+    color: var(--input);
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+form input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--black);
+    background-color: transparent;
+}
+
+form input[type="password"] {
+    padding-right: 40px; /* Espacio para el ícono del ojo */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: var(--input);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+form button {
+    background-color: var(--red-40);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--red-60);
+}
+
+.forgot-password {
+    font-size: 0.9em;
+    color: var(--red-40);
+    float: right;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: var(--red-40);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.button-register{
+    margin-top: 20px;
+    background-color: var(--red-80);
+    color: var(--white);
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit {
+    background-color: #d32f2f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+
+}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %} Sectores - Peluqueria {% endblock %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/servicios.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="proveedores-lista">
+  <h2>Sectores - Peluquería</h2>
+  <h3>Servicios</h3>
+  <form method="GET" action="{% url 'Servicios_Sectores:buscar_servicio' %}">
+    <div class="buscadorAgregar">
+      <div class="search-container">
+        <ion-icon name="search" class="search-icon"></ion-icon>
+        <input type="text" name="buscar" placeholder="Buscar un servicio (Nombre o ID)" class="search-input">
+        <button type="submit">Buscar</button>
+      </div>
+      <a href="{% url 'Servicios_Sectores:ingresar_servicio' %}" class="new-proveedor-button">
+        <ion-icon name="add"></ion-icon> Nuevo Servicio
+      </a>
+    </div>
+  </form>
+  <table>
+    <tr>
+      <th><ion-icon name="key" class="btn-thead"></ion-icon> ID</th>
+      <th><ion-icon name="star" class="btn-thead"></ion-icon> Nombre</th>
+      <th><ion-icon name="hourglass-outline" class="btn-thead"></ion-icon> Duración</th>
+      <th><ion-icon name="pricetag" class="btn-thead"></ion-icon> Precio</th>
+      <th><ion-icon name="settings" class="btn-thead"></ion-icon> Opciones</th>
+  </tr>  
+    {% for servicio in servicios %}
+    <tr>
+      <td>{{ servicio.id }}</td>
+      <td>{{ servicio.nombreServicio }}</td>
+      <td>{{ servicio.duracion }} minutos</td>
+      <td>${{ servicio.precioUni }}</td>
+      <td>
+        <a href="{% url 'Servicios_Sectores:editar_servicio' servicio.id %}" title="Editar Turno" class="editar-button"><ion-icon
+            name="create"></ion-icon></a>
+        <a href="{% url 'Servicios_Sectores:eliminar_servicio' servicio.id %}" title="Eliminar Turno" class="eliminar-button">
+          <ion-icon name="trash"></ion-icon>
+        </a>
+    </tr>
+    {% endfor %}
+  </table>
+  {% if buscar %}
+  <a href="{% url 'Servicios_Sectores:menu_peluqueria' %}" class="volver-link">Volver a la lista de servicios</a>
+  {% endif %}
+</section>
+
+<section class="servicios-mas-solicitados">
+  <h2>Servicios Más Solicitados</h2>
+  <table class="top-servicios">
+    <thead>
+      <tr>
+        <th>Top</th>
+        <th>Servicio</th>
+        <th>Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for servicio in servicios_mas_solicitados %}
+      <tr
+        class="{% if forloop.counter == 1 %}top-1{% elif forloop.counter == 2 %}top-2{% elif forloop.counter == 3 %}top-3{% else %}top-others{% endif %}">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ servicio.idServicio__nombreServicio }}</td>
+        <td>{{ servicio.total_turnos }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'Servicios_Sectores:top_servicios_PDF' %}" target="_blank" class="descargar-pdf">
+    <ion-icon name="arrow-down-circle"></ion-icon> Descargar PDF
+  </a>
+</section>
+<!-- Token CSRF -->
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<!-- Modal de Confirmación -->
+<div id="confirmModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <p>
+      <ion-icon name="alert-circle-outline" class="modal-icon modal-icon-warning"></ion-icon>
+      ¿Estás seguro de que deseas eliminar <strong id="servicioNombre"></strong>?
+    </p>
+    <div class="modal-footer">
+      <button id="cancelarEliminar" class="cancel-btn">
+        <ion-icon name="close-circle" class="modal-btn-icon"></ion-icon>
+        Cancelar
+      </button>
+      <button id="confirmarEliminar" class="add-btn">
+        <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Eliminación Exitosa -->
+<div id="successModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <p>
+      <ion-icon name="checkmark-done-outline" class="modal-icon modal-icon-success"></ion-icon>
+      Servicio <strong id="servicioEliminado"></strong> eliminado con éxito.
+    </p>
+    <button id="cerrarModal" class="add-btn">
+      <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+      Aceptar
+    </button>
+  </div>
+</div>
+
+
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/eliminarServicio.js' %}"></script>
+{% endblock %}

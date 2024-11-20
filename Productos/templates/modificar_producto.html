@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Modificar Producto{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/modificarProducto.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="form-container">
+        <!-- Encabezado -->
+        <div class="form-header">Modificar Producto</div>
+
+        <!-- Formulario -->
+        <form method="post" id="productoForm">
+            {% csrf_token %}
+
+            <!-- Campo Nombre del Producto -->
+            <label for="nombreProd">Nombre del Producto:</label>
+            <div>
+                <input type="text" id="nombreProd" name="nombreProd" value="{{ form.nombreProd.value|default:'' }}">
+                <p id="nombreProdError" class="error"></p>
+            </div>
+
+            <!-- Campo Cantidad en Stock -->
+            <label for="cantidadStockProd">Cantidad en Stock:</label>
+            <div>
+                <input type="number" id="cantidadStockProd" name="cantidadStockProd" value="{{ form.cantidadStockProd.value|default:'' }}" min="0">
+                <p id="cantidadStockProdError" class="error"></p>
+            </div>
+
+            <!-- Campo Marca -->
+            <label for="marcaProd">Marca:</label>
+            <div>
+                <input type="text" id="marcaProd" name="marcaProd" value="{{ form.marcaProd.value|default:'' }}">
+                <p id="marcaProdError" class="error"></p>
+            </div>
+
+            <!-- Campo Precio Unitario de Venta -->
+            <label for="precioUniVentaProd">Precio Unitario de Venta:</label>
+            <div>
+                <input type="number" id="precioUniVentaProd" name="precioUniVentaProd" value="{{ precioUniVentaProd }}" step="0.01" min="0">
+                <p id="precioUniVentaProdError" class="error"></p>
+            </div>
+
+            <!-- Campo Precio Unitario de Compra -->
+            <label for="precioUniCompraProd">Precio Unitario de Compra:</label>
+            <div>
+                <input type="number" id="precioUniCompraProd" name="precioUniCompraProd" value="{{ precioUniCompraProd }}" step="0.01" min="0">
+                <p id="precioUniCompraProdError" class="error"></p>
+            </div>
+
+            <!-- Campo Cantidad Mínima en Stock -->
+            <label for="cantidadMinStockProd">Cantidad Mínima en Stock:</label>
+            <div>
+                <input type="number" id="cantidadMinStockProd" name="cantidadMinStockProd" value="{{ form.cantidadMinStockProd.value|default:'' }}" min="0">
+                <p id="cantidadMinStockProdError" class="error"></p>
+            </div>
+
+            <!-- Campo Fecha de Vencimiento -->
+            <label for="fechaVencProd">Fecha de Vencimiento:</label>
+            <div>
+                {{ form.fechaVencProd }}
+                <p id="fechaVencProdError" class="error"></p>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-footer">
+                <button type="button" class="cancel-btn" onclick="window.history.back();">
+                    <ion-icon name="close-circle"></ion-icon> Cancelar
+                </button>
+                <button type="submit" class="add-btn">
+                    <ion-icon name="checkmark-circle"></ion-icon> Guardar Cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ventaInput = document.getElementById('precioUniVentaProd');
+        const compraInput = document.getElementById('precioUniCompraProd');
+
+        function formatValue(input) {
+            if (input && input.value.includes(',')) {
+                input.value = input.value.replace(',', '.');
+            }
+        }
+
+        formatValue(ventaInput);
+        formatValue(compraInput);
+
+        ventaInput.addEventListener('input', () => formatValue(ventaInput));
+        compraInput.addEventListener('input', () => formatValue(compraInput));
+
+        function validateTextField(inputId, errorId, regex, errorMsg) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            input.addEventListener('input', () => {
+                if (input.value && !regex.test(input.value)) {
+                    error.textContent = errorMsg;
+                } else {
+                    error.textContent = "";
+                }
+            });
+        }
+
+        validateTextField('nombreProd', 'nombreProdError', /^[a-zA-Z0-9\s]+$/, "El campo solo debe contener letras y números.");
+        validateTextField('marcaProd', 'marcaProdError', /^[a-zA-Z0-9\s]+$/, "El campo solo debe contener letras y números.");
+
+        function validateNumberField(inputId, errorId) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            input.addEventListener('input', function () {
+                const regex = /^([1-9][0-9]*)(\.[0-9]{1,2})?$/;
+                if (input.value && !regex.test(input.value)) {
+                    error.textContent = "El campo solo debe contener números positivos.";
+                } else {
+                    error.textContent = "";
+                }
+            });
+        }
+
+        validateNumberField('cantidadStockProd', 'cantidadStockProdError');
+        validateNumberField('precioUniVentaProd', 'precioUniVentaProdError');
+        validateNumberField('precioUniCompraProd', 'precioUniCompraProdError');
+        validateNumberField('cantidadMinStockProd', 'cantidadMinStockProdError');
+    });
+</script>
+{% endblock %}

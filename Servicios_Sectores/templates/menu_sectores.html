@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Sectores {% endblock %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/sectores.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="sectores-tittle">
+    <h2>Sectores</h2>
+</div>
+
+<div class="containerSectores">
+
+    <div class="grid">
+        <a href="{% url 'Servicios_Sectores:menu_peluqueria' %}" class="card selected">
+            <h2>Peluquería</h2>
+            <div class="icon">
+                <img src="placeholder-image.png" alt="Icono Peluquería">
+            </div>
+        </a>
+        <div class="card">
+            <h2>Belleza Facial</h2>
+            <div class="icon">
+                <img src="placeholder-image.png" alt="Icono Belleza Facial">
+            </div>
+        </div>
+        <div class="card">
+            <h2>Manicura</h2>
+            <div class="icon">
+                <img src="placeholder-image.png" alt="Icono Manicura">
+            </div>
+        </div>
+        <div class="card">
+            <h2>Pedicura</h2>
+            <div class="icon">
+                <img src="placeholder-image.png" alt="Icono Pedicura">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

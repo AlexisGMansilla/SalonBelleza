@@ -1,0 +1,29 @@
+# Ignorar la base de datos
+db.sqlite3
+
+# Ignorar directorios de caché de Python
+Estetica/__pycache__/
+Turnos/__pycache__/
+Turnos/migrations/
+Cajas/__pycache__/
+Cajas/migrations/
+Clientes/__pycache__/
+Clientes/migrations/
+Compras/__pycache__/
+Compras/migrations/
+Login/__pycache__/
+Login/migrations/
+Productos/__pycache__/
+Productos/migrations/
+Proveedores/__pycache__/
+Proveedores/migrations/
+Servicios_Sectores/__pycache__/
+Servicios_Sectores/migrations/
+Ventas/__pycache__/
+Ventas/migrations/
+
+# Ignorar archivos temporales
+*.log
+*.tmp
+*.pyc
+

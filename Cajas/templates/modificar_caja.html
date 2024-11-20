@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Modificar Caja{% endblock %}
+
+{% block content %}
+
+    <h1>Modificar Caja</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div><p>Nombre: {{ cform.nombreCaja }}</p></div>
+        <div><p>Estado: {{ cform.estadoCaja }}</p></div>
+        <div><p>Monto: {{ cform.montoCaja }}</p></div>  
+        <button type="submit">Guardar</button>
+    </form>
+
+{% endblock %}

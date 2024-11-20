@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %} Proveedores {% endblock %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/proveedores.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="proveedores-lista">
+  <h2>Proveedores</h2>
+  <form method="GET" action="{% url 'Proveedores:buscar_proveedor' %}">
+    <div class="buscadorAgregar">
+      <div class="search-container">
+        <ion-icon name="search" class="search-icon"></ion-icon>
+        <input type="text" name="buscar" placeholder="Buscar un proveedor (Nombre o ID)" class="search-input">
+        <button type="submit">Buscar</button>
+      </div>
+      <a href="{% url 'Proveedores:ingresar_proveedor' %}" class="new-proveedor-button">
+        <ion-icon name="add"></ion-icon> Nuevo Proveedor
+      </a>
+    </div>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th><ion-icon name="key" class="btn-thead"></ion-icon> ID</th>
+        <th><ion-icon name="storefront" class="btn-thead"></ion-icon> Nombre</th>
+        <th><ion-icon name="location" class="btn-thead"></ion-icon> Domicilio</th>
+        <th><ion-icon name="call" class="btn-thead"></ion-icon> Número Telefónico</th>
+        <th><ion-icon name="calendar" class="btn-thead"></ion-icon> Fecha de Contrato</th>
+        <th><ion-icon name="mail" class="btn-thead"></ion-icon> Email</th>
+        <th><ion-icon name="settings" class="btn-thead"></ion-icon> Opciones</th>
+    </tr>    
+    </thead>
+    <tbody>
+      {% for proveedor in proveedores %}
+      <tr>
+        <td>{{ proveedor.id }}</td>
+        <td>{{ proveedor.nombreProv }}</td>
+        <td>{{ proveedor.domicilioProv }}</td>
+        <td>{{ proveedor.telefonoProv }}</td>
+        <td>{{ proveedor.fechaContratoProv }}</td>
+        <td>{{ proveedor.emailProv }}</td>
+        <td>
+          <a href="{% url 'Proveedores:modificar_proveedor' proveedor.id %}" title="Editar Turno" class="edit-btn">
+            <ion-icon name="create"></ion-icon>
+          </a>
+          <a href="{% url 'Proveedores:eliminar_proveedor' proveedor.id %}" title="Eliminar Turno" class="delete-btn">
+            <ion-icon name="trash"></ion-icon>
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="7">No hay proveedores registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if buscar %}
+  <a href="{% url 'Proveedores:menu_proveedores' %}" class="volver-link">Volver a la lista de proveedores</a>
+  {% endif %}
+</section>
+<!-- Token CSRF -->
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<!-- Modal de Confirmación -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <p>
+      <ion-icon name="alert-circle-outline" class="modal-icon modal-icon-warning"></ion-icon>
+      ¿Estás seguro de que deseas eliminar <strong id="proveedorNombre"></strong>?
+    </p>
+    <div class="modal-footer">
+      <button id="cancelarEliminar" class="cancel-btn">
+        <ion-icon name="close-circle" class="modal-btn-icon"></ion-icon>
+        Cancelar
+      </button>
+      <button id="confirmarEliminar" class="add-btn">
+        <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Eliminación Exitosa -->
+<div id="successModal" class="modal">
+  <div class="modal-content">
+    <p>
+      <ion-icon name="checkmark-done-outline" class="modal-icon modal-icon-success"></ion-icon>
+      Proveedor <strong id="proveedorEliminado"></strong> eliminado con éxito.
+    </p>
+    <button id="cerrarModal" class="add-btn">
+      <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+      Aceptar
+    </button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/eliminarProveedor.js' %}"></script>
+{% endblock %}

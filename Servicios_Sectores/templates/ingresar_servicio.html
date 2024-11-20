@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Ingresar Servicio{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/ingresarServicio.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="form-container">
+        <!-- Encabezado -->
+        <div class="form-header">Nuevo Servicio</div>
+
+        <!-- Formulario -->
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Campo Selección de Sector -->
+            <label for="id_sector">Seleccione un sector:</label>
+            <div><p>{{ sform.idSector }}</p></div>
+            
+            <!-- Campo Nombre del Servicio -->
+            <label for="id_nombreServicio">Nombre:</label>
+            <div><p>{{ sform.nombreServicio }}</p></div>
+
+            <!-- Campo Duración -->
+            <label for="id_duracion">Duración:</label>
+            <div><p>{{ sform.duracion }}</p></div>
+
+            <!-- Campo Precio Unitario -->
+            <label for="id_precioUni">Precio unitario:</label>
+            <div><p>{{ sform.precioUni }}</p></div>
+
+            <!-- Botón de Guardar -->
+            <div class="form-footer">
+                <button type="button" class="cancel-btn" onclick="window.history.back();">
+                    <ion-icon name="close-circle"></ion-icon> Cancelar
+                </button>
+                <button type="submit" class="add-btn">
+                    <ion-icon name="checkmark-circle"></ion-icon> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

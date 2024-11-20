@@ -1,0 +1,339 @@
+.proveedores-lista, .servicios-mas-solicitados {
+    padding: 20px;
+}
+
+/* Ajustes del contenedor de la lista de servicios */
+.proveedores-lista {
+    width: 70%;
+    margin-right: 20px;
+    float: left;
+}
+
+.proveedores-lista h2{
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.proveedores-lista h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+/* Sección de servicios más solicitados */
+.servicios-mas-solicitados {
+    width: 25%;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.servicios-mas-solicitados h2 {
+    color: #dc3545;
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.servicios-mas-solicitados ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.servicios-mas-solicitados li {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.servicios-mas-solicitados li:nth-child(2) {
+    background-color: #dc3545;
+}
+
+.servicios-mas-solicitados li:nth-child(3) {
+    background-color: #dc3545;
+}
+
+/* Botón para descargar PDF - Estilo inicial con borde */
+.descargar-pdf {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    padding: 10px 30px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    background-color: transparent;
+    transition: all 0.3s ease;
+
+}
+
+.descargar-pdf ion-icon {
+    margin-right: 5px;
+    font-size: 1.4em;
+}
+
+/* Estilo al pasar el mouse - fondo rojo y texto blanco */
+.descargar-pdf:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Botón de Nuevo Servicio */
+.new-proveedor-button {
+    background-color: #d32f2f;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+.new-proveedor-button:hover{
+    background-color: #b71c1c;
+}
+.new-proveedor-button ion-icon {
+    font-size: 1.4em;
+    color: #ffffff;
+    margin-right: 5px;
+}
+
+/* Buscador */
+.buscadorAgregar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f2f2f2;
+    width: 60%;
+}
+
+.search-icon {
+    margin-right: 5px;
+    color: #666;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 5px;
+    flex: 1;
+}
+
+/* Tabla de servicios */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ececec;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #dcdcdc;
+    color: #333;
+    font-weight: bold;
+}
+
+
+/* Estilo de los botones de Opciones */
+.editar-button, .eliminar-button {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.editar-button ion-icon, .eliminar-button ion-icon {
+    color: #d32f2f;
+    font-size: 1.5em;
+}
+
+.editar-button:hover ion-icon, .eliminar-button:hover ion-icon {
+    color: #b71c1c;
+}
+
+.editar-button a, .eliminar-button a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Enlace de volver */
+.volver-link {
+    display: block;
+    margin-top: 15px;
+    color: #d9534f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.volver-link:hover {
+    text-decoration: underline;
+}
+
+/* Tabla de Servicios Más Solicitados */
+.top-servicios {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.top-servicios th, .top-servicios td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-servicios th {
+    font-weight: bold;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Colores específicos para cada posición */
+.top-1 {
+    background-color: #bf2234; /* Color rojo oscuro para el top 1 */
+    color: #fff;
+}
+
+.top-2 {
+    background-color: #da2f43; /* Color rojo intermedio para el top 2 */
+    color: #fff;
+}
+
+.top-3 {
+    background-color: #e05263; /* Color rojo claro para el top 3 */
+    color: #fff;
+}
+
+.top-others {
+    background-color: #e57373; /* Color para el resto */
+    color: #fff;
+}
+
+/* modal de eliminar */
+.modal {
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté encima del resto */
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+}
+
+
+.modal-content p {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-icon {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+.modal-icon-warning {
+    color: #e57373;
+}
+
+.modal-icon-success {
+    color: #4caf50;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.cancel-btn {
+    background-color: #e57373;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+}
+
+.add-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #388e3c;
+}
+
+.modal-btn-icon {
+    font-size: 20px;
+    vertical-align: middle;
+}

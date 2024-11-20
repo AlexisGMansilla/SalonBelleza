@@ -1,0 +1,49 @@
+:root {
+    --stroke: rgba(217, 218, 228, 1); /* Borde de inputs */
+    --input: rgba(162, 163, 169, 1);
+    --background: rgba(243, 248, 255, 1);
+    --white: rgba(255, 255, 255, 1);
+    --black: rgba(0, 0, 0, 1);
+
+    --red-0: rgba(17, 3, 5, 1);
+    --red-10: rgba(52, 9, 14, 1);
+    --red-20: rgba(87, 15, 24, 1);
+    --red-30: rgba(121, 21, 33, 1);
+    --red-40: rgba(156, 28, 43, 1);
+    --red-50: rgba(191, 34, 52, 1); /* Color principal tanto para textos, íconos */
+    --red-60: rgba(218, 47, 67, 1); /* Degrade en listas del menú principal */
+    --red-70: rgba(224, 82, 99, 1); /* Degrade en listas del menú principal*/
+    --red-80: rgba(231, 116, 130, 1);
+    --red-90: rgba(237, 151, 161, 1);
+    --red-95: rgba(243, 186, 192, 1);
+    --red-99: rgba(249, 220, 223, 1);
+
+    --red-light-0: rgba(19, 4, 2, 1);
+    --red-light-10: rgba(56, 11, 6, 1);
+    --red-light-20: rgba(93, 19, 9, 1);
+    --red-light-30: rgba(130, 27, 13, 1);
+    --red-light-40: rgba(167, 34, 17, 1);
+    --red-light-50: rgba(204, 42, 20, 1);
+    --red-light-60: rgba(233, 56, 32, 1);
+    --red-light-70: rgba(237, 89, 69, 1);
+    --red-light-80: rgba(240, 122, 106, 1); /* Cancelado */
+    --red-light-90: rgba(244, 155, 144, 1); 
+    --red-light-95: rgba(248, 189, 181, 1);
+    --red-light-99: rgba(252, 222, 218, 1); /* Barra de Ranking de fondo */
+
+    --neutral-0: rgba(10, 10, 10, 1);
+    --neutral-10: rgba(31, 31, 31, 1);
+    --neutral-20: rgba(51, 51, 51, 1); /* Algunos textos */
+    --neutral-30: rgba(71, 71, 71, 1); /* Letra oscura */
+    --neutral-40: rgba(92, 92, 92, 1);  /* Algunos textos más suaves */
+    --neutral-50: rgba(112, 112, 112, 1);
+    --neutral-60: rgba(133, 133, 133, 1);  /* Algunos textos mucho más suaves, como menú/iconos que no están seleccionados */
+    --neutral-70: rgba(153, 153, 153, 1); /* Gris oscuro */
+    --neutral-80: rgba(173, 173, 173, 1);
+    --neutral-90: rgba(194, 194, 194, 1);
+    --neutral-95: rgba(214, 214, 214, 1);
+    --neutral-99: rgba(241, 241, 241, 1); /* Gris claro */
+    
+    --yellow-80: rgba(239, 203, 104, 1); /* Pendiente */
+    --green-60: rgba(10, 244, 151, 1); /* Confirmado */
+}

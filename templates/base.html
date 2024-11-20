@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block extra_meta %}{% endblock %}
+    <title>{% block title %}Salón de Belleza{% endblock %}</title>
+    <!-- icono de la página -->
+    <link rel="shortcut icon" href="https://i.ibb.co/f1txRPC/E.png" type="image/x-icon">
+    <!-- estilos -->
+    <link rel="stylesheet" href="{% static 'css/stylemenu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylecolors.css' %}">
+    <!-- fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- select 2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>    
+    <!-- font -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- iconos -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- css -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <main class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="https://i.ibb.co/KWCbDzM/logo-Estrella-color.png" alt="Logo Estrella Estilista">
+            </div>
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwNpoWSi1dRcZYTrlzbPb0zmfhh5SBbG2fFg&s" alt="Perfil" class="profile-pic">
+                <h3>Estrella</h3>
+                <p>EstrellaEstilista@gmail.com</p>
+            </div>
+            <div class="icon-buttons">
+                <a href="">
+                    <ion-icon name="settings-outline" class="settings-icon"></ion-icon>
+                </a>
+                <a href="{% url 'Login:logout' %}">
+                    <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+                </a>
+                
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="{% url 'Turnos:home_view' %}"><ion-icon name="home-outline"></ion-icon>Menú Principal</a></li>
+                    <li><a href="{% url 'Turnos:listar_turnos_por_dia'%}"><ion-icon name="calendar-outline"></ion-icon>Gestión de Turnos</li>
+                    <li><a href=""><ion-icon name="cart-outline"></ion-icon>Ventas</li>
+                    <li><a href="{% url 'Productos:listar_productos' %}"><ion-icon name="cube-outline"></ion-icon>Productos</a></li>
+                    <li><a href="{% url 'Clientes:listar_clientes' %}"><ion-icon name="people-outline"></ion-icon>Clientes</a></li>
+                    <li><a href="{% url 'Proveedores:menu_proveedores' %}"><ion-icon name="storefront-outline"></ion-icon>Proveedores</a></li>
+                    <li><a href="{% url 'Servicios_Sectores:menu_sectores' %}"><ion-icon name="grid-outline"></ion-icon>Sectores</a></li>
+                </ul>
+            </nav>
+        </aside>
+            {% block content %}{% endblock %}
+        
+    </main>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

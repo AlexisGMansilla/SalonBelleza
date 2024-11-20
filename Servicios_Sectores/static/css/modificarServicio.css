@@ -1,0 +1,93 @@
+/* Contenedor principal centrado */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 80%;
+    background-color: #f8f9fa; /* Fondo más claro */
+}
+
+/* Formulario contenedor */
+.form-container {
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 15px; /* Bordes más redondeados */
+    padding: 30px 50px; /* Espaciado interno más amplio */
+    width: 450px; /* Ancho más grande */
+    max-width: 90%;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más sutil */
+    position: relative;
+    font-family: Arial, sans-serif; /* Fuente más legible */
+}
+
+/* Encabezado del formulario */
+.form-header {
+    font-size: 28px; /* Tamaño de fuente más grande */
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px; /* Más espacio debajo del encabezado */
+}
+
+/* Etiquetas de los campos */
+form div {
+    font-size: 16px; /* Tamaño de fuente más grande para las etiquetas */
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px; /* Espacio entre etiqueta y campo */
+}
+
+/* Campos de entrada y selección */
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: 100%;
+    padding: 12px; /* Espaciado interno más amplio */
+    margin-bottom: 20px; /* Espacio entre campos más amplio */
+    border-radius: 8px; /* Bordes más redondeados */
+    border: 1px solid #ccc; /* Color de borde sutil */
+    font-size: 15px; /* Tamaño de fuente más grande */
+    box-sizing: border-box;
+    background-color: #f9f9f9; /* Fondo claro */
+}
+
+/* Botones de acción */
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px; /* Más espacio antes de los botones */
+}
+
+.form-footer button {
+    padding: 12px 25px; /* Botones más grandes */
+    border-radius: 8px;
+    font-size: 16px; /* Tamaño de fuente más grande */
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+}
+
+/* Botón de Volver */
+.cancel-btn {
+    background-color: #e57373;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Botón Guardar Cambios */
+.add-btn {
+    background-color: #4caf50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #388e3c;
+}

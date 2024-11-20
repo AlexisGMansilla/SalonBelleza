@@ -1,0 +1,90 @@
+/* Encabezado de la sección */
+.header {
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Alinear elementos verticalmente */
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+/* Botón para ir atrás */
+.btn-back {
+    display: flex;
+    align-items: center; /* Alinear icono y texto en el centro */
+    gap: 8px;
+    background-color: transparent;
+    color: #dc3545; /* Rojo del diseño */
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 0; /* Eliminar espacio inferior */
+    transition: color 0.3s ease;
+}
+
+.btn-back ion-icon {
+    font-size: 28px;
+    color: #dc3545; /* Rojo */
+    vertical-align: middle; /* Asegura alineación del ícono */
+}
+
+.btn-back:hover {
+    color: #b71c1c; /* Rojo más oscuro */
+}
+
+.btn-back:hover ion-icon {
+    color: #b71c1c;
+}
+
+/* Título del encabezado */
+.header h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0; /* Eliminar márgenes extras */
+}
+
+/* Columna de Estado */
+.estado {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 5px; /* Bordes redondeados para destacar el fondo */
+}
+
+/* Pendiente: Texto amarillo oscuro con fondo amarillo claro */
+.estado-pendiente {
+    color: #856404; /* Texto amarillo oscuro */
+    background-color: #fff3cd; /* Fondo amarillo claro */
+}
+
+/* Confirmado: Texto verde oscuro con fondo verde claro */
+.estado-confirmado {
+    color: #155724; /* Texto verde oscuro */
+    background-color: #d4edda; /* Fondo verde claro */
+}
+
+/* Cancelado: Texto rojo oscuro con fondo rojo claro */
+.estado-cancelado {
+    color: #721c24; /* Texto rojo oscuro */
+    background-color: #f8d7da; /* Fondo rojo claro */
+}
+
+/* Tabla general */
+table.turnos-table th, table.turnos-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table.turnos-table th {
+    background-color: #f8f9fa; /* Fondo gris claro */
+    color: #000000; /* Texto gris oscuro */
+    font-weight: bold;
+}
+
+/* Alinear contenido en el centro para los estados */
+table.turnos-table td.estado-cell {
+    text-align: center;
+    vertical-align: middle;
+}

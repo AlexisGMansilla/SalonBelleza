@@ -1,0 +1,200 @@
+/* === Contenedor principal === */
+.stats-charts {
+    display: flex;
+    gap: 15px; /* Reducir espacio entre columnas */
+    margin-top: 10px; /* Menor separación superior */
+}
+
+/* Columna de estadísticas */
+.stats-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Menor espaciado entre las estadísticas */
+    flex: 1; /* Ocupa menos espacio proporcional */
+}
+
+/* Estadísticas */
+.stat-box {
+    background-color: #f9f9f9;
+    border-radius: 6px; /* Bordes ligeramente menos redondeados */
+    padding: 8px 12px; /* Menor relleno interno */
+    text-align: left;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra más ligera */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Menor espacio entre ícono y texto */
+    flex: 1;
+}
+
+.stat-icon {
+    font-size: 1.8em; /* Tamaño reducido del ícono */
+    color: #c20000;
+}
+
+
+.stats-title h3 {
+    font-size: 1.5em; /* Número más pequeño */
+    color: #333;
+    margin: 0;
+}
+
+/* Columna para el gráfico */
+.chart-column {
+    flex: 2.5; /* Más espacio relativo para el gráfico */
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    padding: 15px; /* Menor espacio interno */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+.chart-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.chart-title ion-icon{
+    color: #dc3545;
+}
+/* Gráfico */
+.chart canvas {
+    width: 100%;
+    max-height: 250px; /* Altura más baja */
+}
+
+/* Botones alineados a la derecha */
+.chart-actions {
+    display: flex;
+    justify-content: flex-end; /* Botones alineados a la derecha */
+    gap: 8px; /* Menor espacio entre botones */
+    margin-top: 10px; /* Menor separación respecto al gráfico */
+}
+
+/* Botones */
+.chart-actions .descargar-pdf, .chart-actions .ver-detalle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    padding: 6px 16px; /* Botones más compactos */
+    border-radius: 4px; /* Bordes menos redondeados */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8em; /* Texto más pequeño */
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.chart-actions .descargar-pdf ion-icon, .chart-actions .ver-detalle ion-icon {
+    margin-right: 4px;
+    font-size: 1em; /* Íconos más pequeños */
+}
+
+.chart-actions .descargar-pdf:hover, .chart-actions .ver-detalle:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+
+
+
+
+
+/* === Contenedor Principal === */
+.infoProducts {
+    display: flex;
+    justify-content: space-between; /* Alinear cajas horizontalmente */
+    flex-wrap: wrap; /* Adaptación en pantallas pequeñas */
+    gap: 30px; /* Espaciado mayor entre las cajas */
+    margin: 20px auto;
+    max-width: 900px; /* Ancho máximo del contenedor */
+}
+
+/* === Cajas de Información === */
+.info-box {
+    background-color: #f9f9f9; /* Fondo gris claro */
+    padding: 20px;
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+    text-align: left;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 450px; /* Ancho máximo de cada caja */
+    flex: 1; /* Flexibilidad para distribuir espacio uniformemente */
+    border: 1px solid #e5e5e5; /* Borde claro */
+}
+
+/* Títulos de las cajas */
+.info-box h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333; /* Color de texto oscuro */
+    text-align: center; /* Centrar título */
+}
+
+/* === Lista de Productos === */
+.info-box ul {
+    list-style: none; /* Elimina viñetas */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Espaciado mayor entre elementos */
+}
+
+/* Estilo de cada elemento de la lista */
+.info-box li {
+    display: flex; /* Alinear ícono y texto */
+    align-items: center; /* Centrar verticalmente */
+    background-color: #fff; /* Fondo blanco */
+    color: #333; /* Texto gris oscuro */
+    padding: 10px 15px;
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 14px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+    border: 1px solid #dc3545; /* Borde rojo */
+    gap: 10px; /* Espaciado entre ícono y texto */
+}
+
+/* Ícono dentro del producto */
+.info-box li ion-icon {
+    font-size: 1.2em;
+    color: #dc3545; /* Ícono rojo */
+}
+
+/* Contenedor para los botones */
+.action-buttons {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre los botones */
+    gap: 10px; /* Espaciado entre los botones */
+    margin-top: 15px; /* Separación respecto a los elementos superiores */
+}
+
+/* Estilo base para los botones */
+.descargar-pdf, .ver-detalle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #dc3545; /* Borde rojo */
+    color: #dc3545; /* Texto rojo */
+    padding: 8px 20px; /* Tamaño del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Elimina subrayado */
+    font-weight: bold;
+    font-size: 0.9em;
+    background-color: transparent; /* Fondo transparente */
+    transition: all 0.3s ease;
+}
+
+/* Iconos dentro de los botones */
+.descargar-pdf ion-icon, .ver-detalle ion-icon {
+    margin-right: 5px;
+    font-size: 1.2em;
+}
+
+/* Hover para los botones */
+.descargar-pdf:hover, .ver-detalle:hover {
+    background-color: #dc3545; /* Fondo rojo */
+    color: #fff; /* Texto blanco */
+}

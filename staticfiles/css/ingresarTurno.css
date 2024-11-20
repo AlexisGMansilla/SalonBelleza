@@ -1,0 +1,211 @@
+/* Contenedor principal centrado */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 80%;
+    background-color: #f0f0f0;
+}
+
+/* Formulario contenedor */
+.form-container {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px 40px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Encabezado del formulario */
+.form-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Etiquetas de los campos */
+.form-container label {
+    font-weight: bold;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Campos de entrada y selección */
+.form-container input[type="text"],
+.form-container input[type="date"],
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Botones de acción */
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-footer button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Botón de Cancelar */
+.cancel-btn {
+    background-color: #e57373;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Botón de Agregar */
+.add-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #388e3c;
+}
+
+/* Mensajes de error */
+.error {
+    color: #d32f2f;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* select 2 */
+
+
+/* Contenedor principal del select */
+.select2-container--default .select2-selection--multiple {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    min-height: 40px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Chips de selección */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #d32f2f; /* Color rojo más tenue */
+    color: white;
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-size: 14px;
+    margin: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Espaciado entre la "X" y el texto */
+    border: none;
+}
+
+/* Botón de eliminar dentro de los chips */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: 14px; /* Ajusta el tamaño de la X si es necesario */
+    width: 20px; /* Tamaño uniforme */
+    height: 24px; /* Tamaño uniforme */
+    background-color: transparent;
+    border-radius: 50%;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Hover en la "X" */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    background-color: #000000;
+    color: #d32f2f;
+}
+
+/* Hover en los chips */
+.select2-container--default .select2-selection--multiple .select2-selection__choice:hover {
+    background-color: #e53935; /* Color rojo más oscuro al pasar el mouse */
+    color: white;
+}
+
+/* Lista desplegable */
+.select2-container--default .select2-dropdown {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Opciones dentro del dropdown */
+.select2-container--default .select2-results__option {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Hover en las opciones del dropdown */
+.select2-container--default .select2-results__option--highlighted {
+    background-color: #d32f2f;
+    color: white;
+}
+
+/* Opciones seleccionadas en el dropdown */
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: #d32f2f !important; /* Fondo rojo tenue para opciones seleccionadas */
+    color: white !important;
+}
+
+/* Placeholder del select */
+.select2-container--default .select2-selection--multiple .select2-search--inline .select2-search__field {
+    color: #999;
+    font-style: italic;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    width: auto !important;
+    min-width: 100px;
+}
+
+/* Elimina el color azul predeterminado */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #d32f2f !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* Borde en foco */
+.select2-container--default .select2-selection--multiple:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #d32f2f;
+}

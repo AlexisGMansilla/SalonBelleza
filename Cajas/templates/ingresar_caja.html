@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Ingresar Caja{% endblock %}
+
+{% block content %}
+
+    <h1>Nueva Caja</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div><p>Nombre: {{ cform.nombreCaja }}</p></div>
+        <div><p>Estado: {{ cform.estadoCaja }}</p></div>
+        <div><p>Monto: {{ cform.montoCaja }}</p></div>  
+        <button type="submit">Guardar</button>
+    </form>
+
+    <h2>Listado de Cajas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for caja in cajas %}
+                <tr>
+                    <td>{{ caja.nombreCaja }}</td>
+                    <td>{% if caja.estadoCaja %}
+                        Abierta
+                    {% else %}
+                        Cerrada
+                    {% endif %}</td>
+                    <td>{{ caja.montoCaja}}</td>
+                    <td><a href="{% url 'Cajas:modificar_caja' caja.pk %}">Modificar</a></td>
+                    <td><a href="{% url 'Cajas:eliminar_caja' caja.pk %}">Eliminar</a></td>
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No hay cajas regitradas.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

@@ -1,0 +1,374 @@
+/* Sección principal que envuelve todo el contenido */
+.main-section {
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-width: 80%;
+}
+
+/* Encabezado de la sección de turnos */
+.header {
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 10px; 
+}
+
+.header h2 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Botones del encabezado */
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+/* Botón "Nuevo Turno" */
+.btn.nuevo-turno {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #dc3545;
+    color: white;
+    padding: 16px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 26px;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.btn.nuevo-turno ion-icon {
+    font-size: 40px;
+    color: white;
+}
+
+.btn.nuevo-turno:hover {
+    background-color: #b71c1c;
+}
+
+/* Estilos para los indicadores de turnos */
+.indicador-turno {
+    display: flex;
+    align-items: center;
+    padding: 16px 36px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    font-size: 20px;
+}
+
+.confirmados {
+    background-color: #e6f4ea; /* Fondo para confirmados */
+}
+
+.pendientes {
+    background-color: #fff7e6; /* Fondo para pendientes */
+}
+.cancelados {
+    background-color: #fde2e2; /* Fondo para cancelados */
+}
+.indicador-turno ion-icon {
+    font-size: 40px;
+    color: #dc3545;
+}
+
+
+.indicador-turno p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+
+}
+
+/* Tabs */
+.tab-list {
+    display: flex;
+    gap: 10px;
+    list-style-type: none;
+}
+
+.tab-item a {
+    display: block;
+    padding: 10px 20px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.tab-item.active a {
+    background-color: #dc3545;
+    color: white;
+}
+/* Asegurar que todos los elementos en .header-buttons tengan la misma altura */
+.header-buttons > * {
+    height: 60px; /* Ajusta este valor hasta que todos los botones tengan la misma altura */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Panel de contenido de los tabs */
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Dropdown de estado */
+.dropdown-estado {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+/* Confirmado: Verde */
+.dropdown-estado.estado-confirmado {
+    background-color: #e6f4ea; /* Fondo verde claro */
+    color: #155724; /* Texto verde oscuro */
+    font-weight: bold;
+    border: 1px solid #155724;
+}
+
+.dropdown-estado.estado-confirmado:hover {
+    background-color: #d4edda; /* Fondo más oscuro al pasar el mouse */
+    color: #155724;
+}
+
+/* Pendiente: Amarillo */
+.dropdown-estado.estado-pendiente {
+    background-color: #fff7e6; /* Fondo amarillo claro */
+    color: #856404; /* Texto amarillo oscuro */
+    font-weight: bold;
+    border: 1px solid #856404;
+}
+
+.dropdown-estado.estado-pendiente:hover {
+    background-color: #ffe8a1; /* Fondo más oscuro al pasar el mouse */
+    color: #856404;
+}
+
+/* Cancelado: Rojo */
+.dropdown-estado.estado-cancelado {
+    background-color: #fde2e2; /* Fondo rojo claro */
+    color: #721c24; /* Texto rojo oscuro */
+    font-weight: bold;
+    border: 1px solid #721c24;
+}
+
+.dropdown-estado.estado-cancelado:hover {
+    background-color: #f5c6cb; /* Fondo más oscuro al pasar el mouse */
+    color: #721c24;
+}
+
+/* Tabla de turnos */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ececec;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f8f9fa; /* Fondo gris claro */
+    color: #000000; /* Texto gris oscuro */
+    font-weight: bold;
+}
+
+.btn-thead{
+    font-size: 1.2em;
+    vertical-align:sub;
+    color: #d32f2f;
+}
+
+.edit-btn, .delete-btn, .whatsapp-btn {
+    text-decoration: none;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.edit-btn ion-icon, .delete-btn ion-icon {
+    color: #d32f2f;
+}
+
+.whatsapp-btn ion-icon {
+    color: #4caf50;
+}
+.edit-btn:hover ion-icon, .delete-btn:hover ion-icon {
+    color: #b71c1c;
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: space-between; /* Flechas a la izquierda y botón a la derecha */
+    align-items: center;
+    margin: 20px 0;
+    font-size: 18px;
+}
+.pagination ion-icon{
+    font-size: 20px;
+}
+.pagination-current {
+    font-weight: bold;
+}
+/* Flechas */
+.pagination-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pagination-link {
+    text-decoration: none;
+    color: #dc3545; /* Rojo del proyecto */
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaciado entre texto e ícono */
+    transition: color 0.3s ease;
+}
+
+.pagination-link:hover {
+    color: #b71c1c; /* Rojo más oscuro */
+}
+
+/* Botón Ver TODOS los TURNOS */
+.ver-todos-container {
+    display: flex;
+    align-items: center;
+}
+
+.ver-todos-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #dc3545; /* Verde */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ver-todos-btn:hover {
+    background-color: #b71c1c; /* Verde oscuro */
+}
+
+
+/* modal de eliminar */
+.modal {
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté encima del resto */
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+
+.modal-content p {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-icon {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+.modal-icon-warning {
+    color: #e57373;
+}
+
+.modal-icon-success {
+    color: #4caf50;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.cancel-btn {
+    background-color: #e57373;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+}
+
+.add-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #388e3c;
+}
+
+.modal-btn-icon {
+    font-size: 20px;
+    vertical-align: middle;
+}

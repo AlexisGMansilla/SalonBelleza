@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gestión de Turnos{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/turnos.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="main-section">
+    <!-- Encabezado principal -->
+    <div class="header">
+        <h2>Gestión de Turnos</h2>
+        <div class="header-buttons">
+            <a href="{% url 'Turnos:ingresar_turno' %}" class="btn nuevo-turno">
+                <ion-icon name="add"></ion-icon> Nuevo Turno
+            </a>
+            <div class="indicador-turno confirmados">
+                <ion-icon name="calendar"></ion-icon>
+                <div>
+                    <span>Confirmados</span>
+                    <p>{{ turnos_confirmados_count }}</p>
+                </div>
+            </div>
+            <div class="indicador-turno pendientes">
+                <ion-icon name="hourglass-outline"></ion-icon>
+                <div>
+                    <span>Pendientes</span>
+                    <p>{{ turnos_pendientes_count }}</p>
+                </div>
+            </div>
+            <div class="indicador-turno cancelados">
+                <ion-icon name="close-circle"></ion-icon>
+                <div>
+                    <span>Cancelados</span>
+                    <p>{{ turnos_cancelados_count }}</p>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div class="pagination">
+        <!-- Flechas y rango de semana a la izquierda -->
+        <div class="pagination-left">
+            <a href="?page={{ page_number|add:'-1' }}" class="pagination-link prev-week">
+                <ion-icon name="caret-back-circle"></ion-icon> Semana Anterior
+            </a>
+            <span class="pagination-current">
+                Semana {{ rango_semana }}
+            </span>
+            <a href="?page={{ page_number|add:'1' }}" class="pagination-link next-week">
+                Semana Siguiente <ion-icon name="caret-forward-circle"></ion-icon>
+            </a>
+        </div>
+    
+        <!-- Botón "Ver TODOS los TURNOS" a la derecha -->
+        <div class="ver-todos-container">
+            <a href="{% url 'Turnos:todos_los_turnos' %}" class="btn ver-todos-btn">
+                <ion-icon name="list"></ion-icon> Ver Todos los Turnos
+            </a>
+        </div>
+    </div>
+    
+    
+    
+    
+    <!-- Navegación por días de la semana -->
+    <div class="tabs">
+        <ul class="tab-list">
+            {% for day in days %}
+            <li class="tab-item {% if forloop.first %}active{% endif %}">
+                <a href="#tab-{{ day.date }}" class="tab-link">{{ day.name|capfirst  }} {{ day.date }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Contenido de cada día de la semana -->
+    <div class="tab-content">
+        {% for day in days %}
+        <div id="tab-{{ day.date }}" class="tab-panel {% if forloop.first %}active{% endif %}">
+            <table>
+                <thead>
+                    <tr>
+                        <th><ion-icon name="time" class="btn-thead"></ion-icon> Hora</th>
+                        <th><ion-icon name="star" class="btn-thead"></ion-icon> Servicio</th>
+                        <th><ion-icon name="person" class="btn-thead"></ion-icon> Cliente</th>
+                        <th><ion-icon name="call" class="btn-thead"></ion-icon> Número Telefónico</th>
+                        <th><ion-icon name="alert-circle" class="btn-thead"></ion-icon> Estado</th>
+                        <th><ion-icon name="settings" class="btn-thead"></ion-icon> Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for turno in day.turnos %}
+                    <tr>
+                        <td>{{ turno.horaTurno }}</td>
+                        <td>
+                            {% for servicio in turno.servicios.all %}
+                            {{ servicio.nombreServicio }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>{{ turno.idCliente.nombreCli }} {{ turno.idCliente.apellidoCli }}</td>
+                        <td>{{ turno.idCliente.telefonoCli }}</td>
+                        <td>
+                            <form method="post" action="{% url 'Turnos:cambiar_estado_turno' turno.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="page" value="{{ page_number }}">
+                                <input type="hidden" name="day" value="{{ day.date }}">
+                                <select name="nuevo_estado" onchange="this.form.submit();" class="dropdown-estado estado-{{ turno.estadoTurno|lower }}">
+                                    <option value="PENDIENTE" {% if turno.estadoTurno == 'PENDIENTE' %}selected{% endif %}>Pendiente</option>
+                                    <option value="CONFIRMADO" {% if turno.estadoTurno == 'CONFIRMADO' %}selected{% endif %}>Confirmado</option>
+                                    <option value="CANCELADO" {% if turno.estadoTurno == 'CANCELADO' %}selected{% endif %}>Cancelado</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td>
+                            <div class="opciones-container">
+                                <a href="{% url 'Turnos:modificar_turno' turno.pk %}?page={{ page_number }}" 
+                                title="Editar Turno" 
+                                class="btn-opciones edit-btn">
+                                    <ion-icon name="create"></ion-icon>
+                                </a>
+                                <a href="{% url 'Turnos:eliminar_turno' turno.pk %}?page={{ page_number }}" 
+                                title="Eliminar Turno" 
+                                class="btn-opciones delete-btn">
+                                    <ion-icon name="trash"></ion-icon>
+                                </a>
+                                <a href="{{ turno.enlace_whatsapp }}" 
+                                class="btn-opciones whatsapp-btn" 
+                                title="Enviar Recordatorio por WhatsApp" 
+                                target="_blank">
+                                    <ion-icon name="logo-whatsapp"></ion-icon>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">No hay turnos registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+<!-- Token CSRF -->
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<!-- Modal de Confirmación -->
+<div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <p>
+        <ion-icon name="alert-circle-outline" class="modal-icon modal-icon-warning"></ion-icon>
+        ¿Estás seguro de que deseas eliminar el turno de <strong id="turnoDetalle"></strong>?
+      </p>
+      <div class="modal-footer">
+        <button id="cancelarEliminar" class="cancel-btn">
+          <ion-icon name="close-circle" class="modal-btn-icon"></ion-icon>
+          Cancelar
+        </button>
+        <button id="confirmarEliminar" class="add-btn">
+          <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal de Eliminación Exitosa -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <p>
+        <ion-icon name="checkmark-done-outline" class="modal-icon modal-icon-success"></ion-icon>
+        Turno eliminado con éxito.
+      </p>
+      <button id="cerrarModal" class="add-btn">
+        <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+        Aceptar
+      </button>
+    </div>
+  </div>
+  
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/tabs.js' %}"></script>
+<script src="{% static 'js/eliminarTurno.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Cliente{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/editarCliente.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="form-container">
+        <!-- Encabezado -->
+        <div class="form-header">Editar Cliente</div>
+
+        <!-- Formulario -->
+        <form method="post" id="cliente-form">
+            {% csrf_token %}
+
+            <!-- Campo Nombre -->
+            <label for="id_nombreCli">Nombre:</label>
+            <div>{{ form.nombreCli }}</div>
+
+            <!-- Campo Apellido -->
+            <label for="id_apellidoCli">Apellido:</label>
+            <div>{{ form.apellidoCli }}</div>
+
+            <!-- Campo Domicilio -->
+            <label for="id_domicilioCli">Domicilio:</label>
+            <div>{{ form.domicilioCli }}</div>
+
+            <!-- Campo Teléfono -->
+            <label for="id_telefonoCli">Teléfono:</label>
+            <div>{{ form.telefonoCli }}</div>
+
+            <!-- Campo Fecha de Nacimiento -->
+            <label for="id_fechaNacCli">Fecha de Nacimiento:</label>
+            <div>{{ form.fechaNacCli }}</div>
+
+            <!-- Campo Email -->
+            <label for="id_emailCli">Email:</label>
+            <div>{{ form.emailCli }}</div>
+
+            <!-- Botones -->
+            <div class="form-footer">
+                <button type="button" class="cancel-btn" onclick="window.history.back();">
+                    <ion-icon name="close-circle"></ion-icon> Cancelar
+                </button>
+                <button type="submit" class="add-btn">
+                    <ion-icon name="checkmark-circle"></ion-icon> Guardar Cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById('cliente-form');
+        
+        // Validaciones dinámicas
+        const validateTextField = (field, regex, errorMsg) => {
+            field.addEventListener('input', () => {
+                const error = field.parentNode.querySelector('.error');
+                if (field.value && !regex.test(field.value)) {
+                    if (!error) {
+                        const errorElement = document.createElement('span');
+                        errorElement.className = 'error';
+                        errorElement.textContent = errorMsg;
+                        errorElement.style.color = 'red';
+                        field.parentNode.appendChild(errorElement);
+                    }
+                } else {
+                    if (error) error.remove();
+                }
+            });
+        };
+
+        // Validar nombre y apellido
+        validateTextField(document.querySelector('[name="nombreCli"]'), /^[a-zA-Z\s]*$/, "Solo letras y espacios.");
+        validateTextField(document.querySelector('[name="apellidoCli"]'), /^[a-zA-Z\s]*$/, "Solo letras y espacios.");
+
+        // Validar domicilio
+        validateTextField(document.querySelector('[name="domicilioCli"]'), /^[a-zA-Z0-9\s]*$/, "Solo letras, números y espacios.");
+
+        // Validar teléfono
+        validateTextField(document.querySelector('[name="telefonoCli"]'), /^\+?\d*$/, "Solo números y el signo '+'.");
+
+        // Validar email
+        validateTextField(document.querySelector('[name="emailCli"]'), /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Email no válido.");
+    });
+</script>
+{% endblock %}

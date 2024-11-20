@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <h2>Registro de Usuario</h2>
+    
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <h2>Datos de la cuenta</h2>
+        {{ form.as_p }}
+    
+        <h2>Datos del Trabajador</h2>
+        {{ trabajador_form.as_p }}
+        
+        <button type="submit">Registrarse</button>
+    </form>
+    
+
+</body>
+</html>

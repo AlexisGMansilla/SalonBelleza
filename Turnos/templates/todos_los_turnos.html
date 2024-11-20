@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Todos los Turnos{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/turnos.css' %}">
+<link rel="stylesheet" href="{% static 'css/todosLosTurnos.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="main-section">
+    <!-- Encabezado principal -->
+    <div class="header">
+        <a href="{% url 'Turnos:listar_turnos_por_dia' %}" class="btn-back">
+            <ion-icon name="arrow-back"></ion-icon>
+        </a>
+        <h2>Todos los Turnos</h2>
+    </div>
+
+    <div class="pagination">
+        <!-- Enlace para la Semana Anterior -->
+        <a href="?page={{ page_number|add:'-1' }}" class="pagination-link prev-week">
+            <ion-icon name="caret-back-circle"></ion-icon> Semana Anterior
+        </a>
+    
+        <!-- Texto con el Rango de Fechas de la Semana -->
+        <span class="pagination-current">
+            Semana {{ rango_semana }}
+        </span>
+    
+        <!-- Enlace para la Semana Siguiente -->
+        <a href="?page={{ page_number|add:'1' }}" class="pagination-link next-week">
+            Semana Siguiente <ion-icon name="caret-forward-circle"></ion-icon>
+        </a>
+    </div>
+    
+    
+
+    <!-- Tabla de Turnos -->
+    <div class="table-container">
+        <table class="turnos-table">
+            <thead>
+                <tr>
+                    <th><ion-icon name="calendar" class="btn-thead"></ion-icon> Fecha</th>
+                    <th><ion-icon name="time" class="btn-thead"></ion-icon> Hora</th>
+                    <th><ion-icon name="briefcase" class="btn-thead"></ion-icon> Trabajador</th>
+                    <th><ion-icon name="star" class="btn-thead"></ion-icon> Servicio</th>
+                    <th><ion-icon name="person" class="btn-thead"></ion-icon> Cliente</th>
+                    <th><ion-icon name="call" class="btn-thead"></ion-icon> Teléfono</th>
+                    <th><ion-icon name="alert-circle" class="btn-thead"></ion-icon> Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for turno in turnos %}
+                <tr>
+                    <td>{{ turno.fechaTurno|date:"d-m-Y" }}</td>
+                    <td>{{ turno.horaTurno }}</td>
+                    <td>{{ turno.legajoTrabajador.nombreTrab }}</td> <!-- Mostrar nombre del trabajador -->
+                    <td>
+                        {% for servicio in turno.servicios.all %}
+                        <span class="chip">{{ servicio.nombreServicio }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>{{ turno.idCliente.nombreCli }} {{ turno.idCliente.apellidoCli }}</td>
+                    <td>{{ turno.idCliente.telefonoCli }}</td>
+                    <td  class="estado-cell">
+                        <span class="estado estado-{{ turno.estadoTurno|lower }}">
+                            {{ turno.estadoTurno }}
+                        </span>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No hay turnos registrados para esta semana.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Opcional: Si necesitas lógica adicional para manejar las semanas
+</script>
+{% endblock %}

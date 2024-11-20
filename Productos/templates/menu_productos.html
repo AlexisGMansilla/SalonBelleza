@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Productos{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/productos.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="product-list">
+    <h2>Productos</h2>
+    <form method="GET" action="">
+        <div class="buscadorAgregar">
+            <div class="search-container">
+                <ion-icon name="search" class="search-icon"></ion-icon>
+                <input type="text" name="search" placeholder="Buscar un producto (Nombre, ID)" class="search-input">
+                <button type="submit">Buscar</button>
+            </div>
+            <a href="{% url 'Productos:ingresar_producto' %}" class="new-product-button">
+                <ion-icon name="add"></ion-icon> Nuevo Producto
+            </a>
+        </div>
+    </form>
+
+    <table>
+        <thead>
+          <tr>
+            <th><ion-icon name="key" class="btn-thead"></ion-icon> ID</th>
+            <th><ion-icon name="cube" class="btn-thead"></ion-icon> Nombre</th>
+            <th><ion-icon name="layers" class="btn-thead"></ion-icon> Stock</th>
+            <th><ion-icon name="ribbon" class="btn-thead"></ion-icon> Marca</th>
+            <th><ion-icon name="pricetag" class="btn-thead"></ion-icon> Precio</th>
+            <th><ion-icon name="calendar" class="btn-thead"></ion-icon> Fecha de Vencimiento</th>
+            <th><ion-icon name="settings" class="btn-thead"></ion-icon> Opciones</th>
+        </tr>        
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.nombreProd }}</td>
+                <td>{{ producto.cantidadStockProd }}</td>
+                <td>{{ producto.marcaProd }}</td>
+                <td>${{ producto.precioUniVentaProd }}</td>
+                <td>{{ producto.fechaVencProd }}</td>
+                <td>
+                    <a href="{% url 'Productos:modificar_producto' producto.id %}" title="Editar Turno" class="edit-btn">
+                        <ion-icon name="create"></ion-icon>
+                    </a>
+                    <a href="{% url 'Productos:eliminar_producto' producto.id %}" title="Eliminar Turno" class="delete-btn">
+                        <ion-icon name="trash"></ion-icon>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No se encontraron productos.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<!-- Token CSRF -->
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+<!-- Modal de Confirmación -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <p>
+      <ion-icon name="alert-circle-outline" class="modal-icon modal-icon-warning"></ion-icon>
+      ¿Estás seguro de que deseas eliminar <strong id="productoNombre"></strong>?
+    </p>
+    <div class="modal-footer">
+      <button id="cancelarEliminar" class="cancel-btn">
+        <ion-icon name="close-circle" class="modal-btn-icon"></ion-icon>
+        Cancelar
+      </button>
+      <button id="confirmarEliminar" class="add-btn">
+        <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Eliminación Exitosa -->
+<div id="successModal" class="modal">
+  <div class="modal-content">
+    <p>
+      <ion-icon name="checkmark-done-outline" class="modal-icon modal-icon-success"></ion-icon>
+      Producto <strong id="productoEliminado"></strong> eliminado con éxito.
+    </p>
+    <button id="cerrarModal" class="add-btn">
+      <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+      Aceptar
+    </button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/eliminarProducto.js' %}"></script>
+{% endblock %}

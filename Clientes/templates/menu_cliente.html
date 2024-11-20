@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Clientes{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/clientes.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="client-list">
+    <h2>Clientes</h2>
+    <form method="GET">
+        <div class="buscadorAgregar">
+            <div class="search-container">
+                <ion-icon name="search" class="search-icon"></ion-icon>
+                <input type="text" name="buscar" placeholder="Buscar un cliente (Nombre, Apellido o ID)" class="search-input">
+                <button type="submit">Buscar</button>
+            </div>
+            <a href="{% url 'Clientes:ingresar_cliente' %}" class="new-client-button">
+                <ion-icon name="add"></ion-icon> Nuevo Cliente
+            </a>
+        </div>
+    </form>
+
+    <table>
+        <thead>
+          <tr>
+            <th><ion-icon name="key" class="btn-thead"></ion-icon> ID</th>
+            <th><ion-icon name="person" class="btn-thead"></ion-icon> Nombre</th>
+            <th><ion-icon name="person" class="btn-thead"></ion-icon> Apellido</th>
+            <th><ion-icon name="home" class="btn-thead"></ion-icon> Domicilio</th>
+            <th><ion-icon name="call" class="btn-thead"></ion-icon> Número Tel.</th>
+            <th><ion-icon name="calendar" class="btn-thead"></ion-icon> Fecha de Nacimiento</th>
+            <th><ion-icon name="mail" class="btn-thead"></ion-icon> Email</th>
+            <th><ion-icon name="settings" class="btn-thead"></ion-icon> Opciones</th>
+        </tr>        
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.nombreCli }}</td>
+                <td>{{ cliente.apellidoCli }}</td>
+                <td>{{ cliente.domicilioCli }}</td>
+                <td>{{ cliente.telefonoCli }}</td>
+                <td>{{ cliente.fechaNacCli }}</td>
+                <td>{{ cliente.emailCli }}</td>
+                <td>
+                    <a href="{% url 'Clientes:editar_cliente' cliente.id %}" title="Editar Turno" class="edit-btn">
+                        <ion-icon name="create"></ion-icon>
+                    </a>
+                    <a href="{% url 'Clientes:eliminar_cliente' cliente.id %}" title="Eliminar Turno" class="delete-btn">
+                        <ion-icon name="trash"></ion-icon>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No se encontraron clientes.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<!-- Token CSRF -->
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+<!-- Modal de Confirmación -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <p>
+      <ion-icon name="alert-circle-outline" class="modal-icon modal-icon-warning"></ion-icon>
+      ¿Estás seguro de que deseas eliminar <strong id="clienteNombre"></strong>?
+    </p>
+    <div class="modal-footer">
+      <button id="cancelarEliminar" class="cancel-btn">
+        <ion-icon name="close-circle" class="modal-btn-icon"></ion-icon>
+        Cancelar
+      </button>
+      <button id="confirmarEliminar" class="add-btn">
+        <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Eliminación Exitosa -->
+<div id="successModal" class="modal">
+  <div class="modal-content">
+    <p>
+      <ion-icon name="checkmark-done-outline" class="modal-icon modal-icon-success"></ion-icon>
+      Cliente <strong id="clienteEliminado"></strong> eliminado con éxito.
+    </p>
+    <button id="cerrarModal" class="add-btn">
+      <ion-icon name="checkmark-circle" class="modal-btn-icon"></ion-icon>
+      Aceptar
+    </button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/eliminarCliente.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Ingresar Proveedor{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/ingresarProveedor.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="form-container">
+        <!-- Encabezado -->
+        <div class="form-header">Nuevo Proveedor</div>
+
+        <!-- Formulario -->
+        <form method="post" action="{% url 'Proveedores:ingresar_proveedor' %}" id="proveedor-form">
+            {% csrf_token %}
+
+            <!-- Campo Nombre -->
+            <label for="id_nombreProv">Nombre:</label>
+            <div>
+                <p>{{ provform.nombreProv }}</p>
+            </div>
+
+            <!-- Campo Domicilio -->
+            <label for="id_domicilioProv">Domicilio:</label>
+            <div>
+                <p>{{ provform.domicilioProv }}</p>
+            </div>
+
+            <!-- Campo Teléfono -->
+            <label for="id_telefonoProv">Teléfono:</label>
+            <div>
+                <p>{{ provform.telefonoProv }}</p>
+            </div>
+
+            <!-- Campo Fecha de Contrato -->
+            <label for="id_fechaContratoProv">Fecha de contrato:</label>
+            <div>
+                <p>{{ provform.fechaContratoProv }}</p>
+            </div>
+
+            <!-- Campo Email -->
+            <label for="id_emailProv">Email:</label>
+            <div>
+                <p>{{ provform.emailProv }}</p>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-footer">
+                <button type="button" class="cancel-btn" onclick="window.history.back();">
+                    <ion-icon name="close-circle"></ion-icon> Cancelar
+                </button>
+                <button type="submit" class="add-btn">
+                    <ion-icon name="checkmark-circle"></ion-icon> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById('proveedor-form');
+
+        // Seleccionar campos del formulario
+        const nombreField = document.querySelector('[name="nombreProv"]');
+        const domicilioField = document.querySelector('[name="domicilioProv"]');
+        const telefonoField = document.querySelector('[name="telefonoProv"]');
+        const emailField = document.querySelector('[name="emailProv"]');
+
+        // Agregar eventos de validación en tiempo real
+        nombreField.addEventListener('input', () => validateName(nombreField));
+        domicilioField.addEventListener('input', () => validateDomicilio(domicilioField));
+        telefonoField.addEventListener('input', () => validatePhone(telefonoField));
+        emailField.addEventListener('input', () => validateEmail(emailField));
+
+        function showError(field, message) {
+            const existingError = field.parentNode.querySelector('.error');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            if (message) {
+                const error = document.createElement('span');
+                error.className = 'error';
+                error.style.color = 'red';  // Mismo estilo de color rojo para errores
+                error.textContent = message;
+                field.parentNode.insertBefore(error, field.nextSibling);
+            }
+        }
+
+        function validateName(field) {
+            const namePattern = /^[a-zA-Z\s]+$/;
+            if (!namePattern.test(field.value)) {
+                showError(field, "Este campo solo debe contener letras y espacios.");
+            } else {
+                showError(field, "");
+            }
+        }
+
+        function validateDomicilio(field) {
+            const domicilioPattern = /^[a-zA-Z0-9\s]+$/;
+            if (!domicilioPattern.test(field.value)) {
+                showError(field, "El domicilio solo debe contener letras, números y espacios.");
+            } else {
+                showError(field, "");
+            }
+        }
+
+        function validatePhone(field) {
+            const phonePattern = /^\+?\d+$/;
+            if (!phonePattern.test(field.value)) {
+                showError(field, "El teléfono solo debe contener números y el signo '+'.");
+            } else {
+                showError(field, "");
+            }
+        }
+
+        function validateEmail(field) {
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(field.value)) {
+                showError(field, "Por favor, ingrese un email válido.");
+            } else {
+                showError(field, "");
+            }
+        }
+    });
+</script>
+
+{% endblock %}

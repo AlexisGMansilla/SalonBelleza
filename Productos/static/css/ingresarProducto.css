@@ -1,0 +1,100 @@
+/* Contenedor principal centrado */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 80%;
+    background-color: #f0f0f0;
+}
+
+/* Formulario contenedor */
+.form-container {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px 40px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Encabezado del formulario */
+.form-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Etiquetas de los campos */
+.form-container label {
+    font-weight: bold;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Campos de entrada y selección */
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fff; /* Fondo blanco para consistencia */
+}
+
+/* Botones de acción */
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-footer button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Botón de Volver */
+.cancel-btn {
+    background-color: #e57373;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Botón de Guardar */
+.add-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #388e3c;
+}
+
+/* Mensajes de error */
+.error {
+    color: #d32f2f;
+    font-size: 14px;
+    margin-top: 5px;
+}

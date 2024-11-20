@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styleLogin.css' %}">
+    <link rel="shortcut icon" href="https://i.ibb.co/f1txRPC/E.png" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"> </script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"> </script>
+</head>
+<body>
+    <main>
+        <img src="https://i.ibb.co/KWCbDzM/logo-Estrella-color.png" alt="Logo Estrella">
+        <div class="login-container">
+            <h1>Iniciar Sesión</h1>
+            <p>Por favor, ingrese sus datos</p>
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username">Usuario</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <ion-icon class="icon" name="person"></ion-icon>
+                        </span>
+                        <input type="text" name="username" id="id_username" placeholder="estrella" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_password">Contraseña <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a></label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <ion-icon class="icon" name="lock-closed"></ion-icon>
+                        </span>
+                        <input type="password" name="password" id="id_password" placeholder="Tu contraseña" class="form-control" required>
+                        <span class="input-icon toggle-password">
+                            <ion-icon class="icon" name="eye-outline"></ion-icon>
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Iniciar Sesión</button>
+            </form>
+            <a href="{% url 'Login:registrar_usuario' %}">
+                <button class="button-register">Registrar</button>
+            </a> 
+        </div>
+    </main>
+    <script src="{% static 'js/login.js' %}"></script>
+</body>
+</html>

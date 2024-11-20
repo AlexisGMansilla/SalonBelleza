@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Menú Principal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <div class="contentMenu">
+        <header>
+            <h1>Hola, Estrella</h1>
+            <p id="current-time">Cargando hora...</p>
+        </header>
+
+        <section class="stats-charts">
+            <!-- Columna de estadísticas -->
+            <div class="stats-column">
+                <div class="stat-box">
+                    <ion-icon name="people" class="stat-icon"></ion-icon>
+                    <div class="stats-title">
+                        <p>Total de Clientes</p>
+                        <h3>{{ client_count }}</h3>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <ion-icon name="calendar" class="stat-icon"></ion-icon>
+                    <div class="stats-title">
+                        <p>Turnos Confirmados</p>
+                        <h3>{{ turnos_confirmados }}</h3>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <ion-icon name="hourglass-outline" class="stat-icon"></ion-icon>
+                    <div class="stats-title">
+                        <p>Turnos Pendientes</p>
+                        <h3>{{ turnos_pendientes }}</h3>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <ion-icon name="cube" class="stat-icon"></ion-icon>
+                    <div class="stats-title">
+                        <p>Total de Productos</p>
+                        <h3>{{ total_productos }}</h3>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <!-- Columna para el gráfico -->
+            <div class="chart-column">
+                <div class="chart">
+                    <div class="chart-title">
+                        <ion-icon name="stats-chart"></ion-icon>
+                        <h3>Ranking Semanal de Demanda</h3>
+                    </div>
+                    <canvas id="demandaSemanalChart" data-demanda-semanal='{{ demanda_semanal|safe }}'></canvas>
+                </div>
+                <!-- Botones alineados a la derecha -->
+                <div class="chart-actions">
+                    <a href="" target="_blank" class="descargar-pdf">
+                        <ion-icon name="arrow-down-circle"></ion-icon> Descargar PDF
+                    </a>
+                    <a href="" class="ver-detalle">
+                        <ion-icon name="eye"></ion-icon> Ver completo
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+
+        <section class="infoProducts">
+            <div class="info-box">
+                <h4>Productos Faltantes de Stock</h4>
+                <ul>
+                    {% for producto in productos_faltantes|slice:":3" %}
+                    <li>
+                        <ion-icon name="alert-circle"></ion-icon>
+                        Quedan <strong>{{ producto.cantidadStockProd }} unid.</strong> de
+                        <strong>{{ producto.nombreProd }}, {{ producto.marcaProd }}</strong>
+                        <!-- ({{ producto.cantidadMinStockProd }} mínimo) -->
+                    </li>
+                    {% empty %}
+                    <li>No hay productos faltantes de stock.</li>
+                    {% endfor %}
+                </ul>
+                <div class="action-buttons">
+                    <a href="" target="_blank" class="descargar-pdf">
+                        <ion-icon name="arrow-down-circle"></ion-icon> Descargar PDF
+                    </a>
+                    <a href="" class="ver-detalle">
+                        <ion-icon name="eye"></ion-icon> Ver completo
+                    </a>
+                </div>
+            </div>
+        
+            <div class="info-box">
+                <h4>Productos Próximos a Vencer</h4>
+                <ul>
+                    {% for producto in proximos_a_vencer|slice:":3" %}
+                    <li>
+                        <ion-icon name="calendar"></ion-icon>
+                        <strong>{{ producto.fechaVencProd|date:"d F" }}</strong> - 
+                        {{ producto.nombreProd }}, {{ producto.marcaProd }}
+                    </li>
+                    {% empty %}
+                    <li>No hay productos próximos a vencer.</li>
+                    {% endfor %}
+                </ul>
+                <div class="action-buttons">
+                    <a href="" target="_blank" class="descargar-pdf">
+                        <ion-icon name="arrow-down-circle"></ion-icon> Descargar PDF
+                    </a>
+                    <a href="" class="ver-detalle">
+                        <ion-icon name="eye"></ion-icon> Ver completo
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+
+    </div>
+
+    <aside class="calendar-sidebar">
+        <div class="calendar-header">
+            <ion-icon name="calendar-outline" class="calendar-icon"></ion-icon>
+            <h3>Calendario</h3>
+            <p class="month-year" id="monthYear"></p>
+        </div>
+        <div class="calendar-days" id="calendarDays"></div>
+        <ul class="appointments">
+            <li>
+                <strong>10:00</strong> José Gutiérrez<br>
+                <span>Corte, Color, Nut...</span>
+            </li>
+            <li>
+                <strong>11:00</strong> Oriana Palmero<br>
+                <span>Shock de Keratina</span>
+            </li>
+            <li>
+                <strong>15:00</strong> Alexis Mansilla<br>
+                <span>Corte</span>
+            </li>
+            <li>
+                <strong>16:00</strong> Emmanuel Zambrano<br>
+                <span>Corte, Color</span>
+            </li>
+            <li>
+                <strong>18:00</strong> Micaela Laime<br>
+                <span>Alisado, Balayage</span>
+            </li>
+            <li>
+                <strong>20:30</strong> Luciana Molina<br>
+                <span>Iluminación de re...</span>
+            </li>
+        </ul>
+    </aside>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/menu.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/demandaSemanal.js' %}"></script>
+{% endblock %}
