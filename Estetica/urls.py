@@ -15,17 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect  # Importa redirect para redirigir directamente a login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Cajas/', include(('Cajas.urls', 'Cajas'), namespace='Cajas')),
     path('Clientes/', include(('Clientes.urls', 'Clientes'), namespace='Clientes')),
     path('Ventas/', include(('Ventas.urls', 'Ventas'), namespace='Ventas')),
-    path('Login/', include(('Login.urls', 'Login'), namespace='Login')),
+    path('Login/', include(('Login.urls', 'Login'), namespace='Login')), 
     path('Productos/', include(('Productos.urls', 'Productos'), namespace='Productos')),
     path('Proveedores/', include(('Proveedores.urls', 'Proveedores'), namespace='Proveedores')),
     path('ServiciosSectores/', include(('Servicios_Sectores.urls', 'Servicios_Sectores'), namespace='Servicios_Sectores')),
-    path('', include(('Turnos.urls', 'Turnos'), namespace='Turnos')),
+    path('Turnos/', include(('Turnos.urls', 'Turnos'), namespace='Turnos')),
     path('Compras/', include(('Compras.urls', 'Compras'), namespace='Compras')),
-    path('',include('Login.urls')),
+    path('', lambda request: redirect('Login:Login')),  # Redirige la raíz al login
+
 ]
