@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn school.wsgi
+web: python manage.py migrate && gunicorn Estetica.wsgi:application --bind 0.0.0.0:8080
